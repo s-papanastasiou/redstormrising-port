@@ -29,19 +29,11 @@ disks of version v843.02 (`.adf`).
     <td align="center">The strategic map</td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/world-news.png" alt="World News: the war's progress" width="100%"></td>
     <td><img src="docs/screenshots/control-room.png" alt="The control room: Your Orders, Sir?" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center">World News: how the war goes</td>
-    <td align="center">The control room: a sonar contact</td>
-  </tr>
-  <tr>
-    <td><img src="docs/screenshots/torpedo-launch.png" alt="A Mk 48 torpedo leaving the submarine" width="100%"></td>
     <td><img src="docs/screenshots/tactical-display.png" alt="The tactical display in a battle" width="100%"></td>
   </tr>
   <tr>
-    <td align="center">A Mk 48 torpedo on its way</td>
+    <td align="center">The control room: a sonar contact</td>
     <td align="center">The tactical display in a battle</td>
   </tr>
 </table>
