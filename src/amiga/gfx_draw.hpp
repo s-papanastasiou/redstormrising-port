@@ -8,6 +8,7 @@
 
 #include "amiga/bitmap.hpp"
 
+#include <cstddef>
 #include <cstdint>
 #include <map>
 #include <vector>
