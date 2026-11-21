@@ -33,7 +33,7 @@ jobs:
             libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
             libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev libwayland-dev \
             libdecor-0-dev wayland-protocols
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build SDL3
         run: |
           curl -fsSL -o sdl.tar.gz "https://github.com/libsdl-org/SDL/releases/download/release-${SDL_VERSION}/SDL3-${SDL_VERSION}.tar.gz"
@@ -52,7 +52,7 @@ jobs:
           cmake --build build-linux-package --target shader_preset_test
           ctest --test-dir build-linux-package --output-on-failure
           dist/RedStormRising-linux-x86_64/rsr --version
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: linux
           path: dist/RedStormRising-linux-x86_64.tar.gz
@@ -66,12 +66,12 @@ jobs:
     steps:
       - name: Tools
         run: dnf install -y -q git cmake ninja-build zip mingw64-gcc-c++ mingw64-SDL3
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Package
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           tools/package-windows.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows
           path: dist/RedStormRising-windows.zip

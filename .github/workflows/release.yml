@@ -16,7 +16,7 @@ jobs:
     name: Tag matches the version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Compare
         run: |
           version=$(sed -n 's/^project(redstormrising-port VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
@@ -37,8 +37,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           path: artifacts
       - name: Create the draft
