@@ -16,3 +16,4 @@ dist/
 !docs/keys.pdf
 __pycache__/
 build-bounds/
+build-linux-package/

@@ -534,6 +534,7 @@ std::string user_dir() {
 
 void usage() {
   fprintf(stderr,
+          "Red Storm Rising port " RSR_VERSION "\n"
           "usage: rsr [options] [GAME...]\n"
           "  GAME             the WHDLoad install archive (RedStormRising_v1.0_1603.lha), or\n"
           "                   both disks of v843.02 (two .adf), their files extracted once\n"
@@ -549,6 +550,7 @@ void usage() {
           "  --crt-guest      CRT look by guest(r) (crt-guest-dr-venom, 11 passes)\n"
           "  --crt-guest-fast  lighter crt-guest-dr-venom (5 passes)\n"
           "  --shader-preset FILE  post-process with a libretro GLSL preset (.glslp)\n"
+          "  --version        print the version\n"
           "  --launcher       show the launch screen (the default without options)\n"
           "  --no-launcher    start the game at once\n"
           "  --speed X        CPU speed multiplier (default 1 = stock A500)\n"
@@ -614,6 +616,7 @@ int main(int argc, char** argv) {
     else if (a == "--ram-hash" && i + 1 < argc) machine.ram_hash_every = std::atoi(argv[++i]);
     else if (a == "--av-hash" && i + 1 < argc) machine.av_hash_every = std::atoi(argv[++i]);
     else if (a == "-h" || a == "--help") { usage(); return 0; }
+    else if (a == "--version") { printf("Red Storm Rising port %s\n", RSR_VERSION); return 0; }
     else if (a == "--launcher") launch_screen = 1;
     else if (a == "--no-launcher") launch_screen = 0;
     else if (!a.empty() && a[0] == '-') { usage(); return 2; }

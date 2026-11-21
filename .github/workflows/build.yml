@@ -1,0 +1,78 @@
+# SPDX-FileCopyrightText: 2026 Stelios Papanastasiou
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Builds the Linux and Windows packages and runs the checks that need no
+# game files (the code rules, the shader preset test). The full gate
+# (tests/check_native.sh) needs the game's files, which are never uploaded:
+# it is run locally before pushing. Called by release.yml for releases.
+name: Build
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_call:
+
+env:
+  SDL_VERSION: 3.4.20
+
+jobs:
+  linux:
+    name: Linux package
+    runs-on: ubuntu-latest
+    # Built on Ubuntu 22.04, so it runs on distributions from 2022 on.
+    container: ubuntu:22.04
+    steps:
+      - name: Tools and SDL3's build dependencies
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update -q
+          apt-get install -y -q git ca-certificates curl cmake ninja-build g++-12 pkg-config \
+            python3 file libasound2-dev libpulse-dev libpipewire-0.3-dev libx11-dev libxext-dev \
+            libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxtst-dev \
+            libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
+            libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev libwayland-dev \
+            libdecor-0-dev wayland-protocols
+      - uses: actions/checkout@v4
+      - name: Build SDL3
+        run: |
+          curl -fsSL -o sdl.tar.gz "https://github.com/libsdl-org/SDL/releases/download/release-${SDL_VERSION}/SDL3-${SDL_VERSION}.tar.gz"
+          tar xzf sdl.tar.gz
+          CC=gcc-12 cmake -S "SDL3-${SDL_VERSION}" -B sdl-build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DSDL_TESTS=OFF -DSDL_EXAMPLES=OFF -DSDL_STATIC=OFF -DCMAKE_INSTALL_PREFIX=/opt/sdl3
+          cmake --build sdl-build
+          cmake --install sdl-build
+      - name: Package
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          CC=gcc-12 CXX=g++-12 CMAKE_PREFIX_PATH=/opt/sdl3 tools/package-linux.sh
+      - name: Checks that need no game files
+        run: |
+          python3 tools/analysis/check_code_rules.py
+          cmake --build build-linux-package --target shader_preset_test
+          ctest --test-dir build-linux-package --output-on-failure
+          dist/RedStormRising-linux-x86_64/rsr --version
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: dist/RedStormRising-linux-x86_64.tar.gz
+          if-no-files-found: error
+
+  windows:
+    name: Windows package
+    runs-on: ubuntu-latest
+    # Cross-compiled with MinGW on Fedora, as tools/package-windows.sh does.
+    container: fedora:latest
+    steps:
+      - name: Tools
+        run: dnf install -y -q git cmake ninja-build zip mingw64-gcc-c++ mingw64-SDL3
+      - uses: actions/checkout@v4
+      - name: Package
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          tools/package-windows.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: dist/RedStormRising-windows.zip
+          if-no-files-found: error
