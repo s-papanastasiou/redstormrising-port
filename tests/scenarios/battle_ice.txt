@@ -1,0 +1,53 @@
+# Training battle vs. a November-class submarine in drift ice, for
+# --det-timing runs: title -> START -> 1984 -> identification -> name TEST
+# -> Introductory -> first training action -> sonar contact -> Battle
+# Stations (Up, Return) -> conditions report. In the battle the test-only
+# "set" switches Storm to depth mode 0 (a4-31088: depth_at gives the lower
+# limit) and turns on the depth chart (a4-30728); then pause and resume
+# (Alt-P: flash_red, flash_black, silence), course order F10 (order_course),
+# depth, displays, ship database, sea conditions, decoy, weapon control.
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4190 mouse 0 82
+4210 lmb 1
+4230 lmb 0
+4600 lmb 1
+4620 lmb 0
+4900 key Up down
+4903 key Up up
+5000 key Return
+5600 key Space
+5800 set storm a4-31088 2 0
+5800 set storm a4-30728 2 1
+6200 key Space
+6450 key 64 down
+6500 key P
+6550 key 64 up
+6750 key 64 down
+6800 key P
+6850 key 64 up
+7000 key F10
+7100 key 9
+7200 key 0
+7300 key Return
+8000 key F7
+8100 key 4
+8200 key Return
+9000 key F8
+9100 key 2
+9200 key Return
+10000 key F2
+11000 key F9
+11100 key 9
+11150 key F4
+11400 key Return
+12000 quit

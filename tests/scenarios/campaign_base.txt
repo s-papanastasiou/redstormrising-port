@@ -1,0 +1,41 @@
+# Campaign, the submarine at its base, for --det-timing runs: as
+# campaign_battle.txt up to the strategic map; the test-only "set" puts
+# the submarine (unit 4: x at a4+14908, y at a4+14910) on place 11, its
+# base (40, 120) -> the base report (Red's turn: sub_at_base) and the
+# screens after it.
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4150 mouse 0 143
+4200 lmb 1
+4220 lmb 0
+4600 lmb 1
+4620 lmb 0
+5000 mouse 0 25
+5050 lmb 1
+5070 lmb 0
+5300 lmb 1
+5320 lmb 0
+8650 set red a4+14908 2 40
+8650 set red a4+14910 2 120
+9500 lmb 1
+9520 lmb 0
+10000 lmb 1
+10020 lmb 0
+10500 key Return
+11000 lmb 1
+11020 lmb 0
+11500 lmb 1
+11520 lmb 0
+12000 key Return
+12500 lmb 1
+12520 lmb 0
+13500 quit

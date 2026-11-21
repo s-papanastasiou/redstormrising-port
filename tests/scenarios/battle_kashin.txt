@@ -1,0 +1,69 @@
+# Training battle vs. a Kashin-class destroyer, for --det-timing runs:
+# title -> START -> 1984 -> identification -> name TEST -> Introductory ->
+# second training action -> orders -> Battle Stations -> load tube 1 ->
+# fire a Mk48 north at the destroyer (it crosses the torpedo's path) ->
+# enemy torpedoes and hits (training: no damage) -> depth order (F9 50) ->
+# periscope, radar, displays, Help, noisemaker and decoy.
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4190 mouse 0 34
+4210 lmb 1
+4230 lmb 0
+4600 lmb 1
+4620 lmb 0
+4950 mouse -85 116
+5050 lmb 1
+5070 lmb 0
+5450 key Space
+5600 key 60 down
+5650 key 4
+5700 key 60 up
+9000 key 4
+# aim: the game put the pointer on the aim point (187,97) at "4"; to (190,37)
+9060 mouse 3 -3
+9063 mouse 0 -3
+9066 mouse 0 -3
+9069 mouse 0 -3
+9072 mouse 0 -3
+9075 mouse 0 -3
+9078 mouse 0 -3
+9081 mouse 0 -3
+9084 mouse 0 -3
+9087 mouse 0 -3
+9090 mouse 0 -3
+9093 mouse 0 -3
+9096 mouse 0 -3
+9099 mouse 0 -3
+9102 mouse 0 -3
+9105 mouse 0 -3
+9108 mouse 0 -3
+9111 mouse 0 -3
+9114 mouse 0 -3
+9117 mouse 0 -3
+9150 lmb 1
+9180 lmb 0
+20000 key F9
+20060 key 5
+20120 key 0
+20180 key Return
+26100 key F4
+27000 key 9
+28000 key F5
+28500 key F6
+29000 key F8
+29500 key F3
+30000 key Home
+30500 key Space
+31000 key F1
+31500 key 1
+32000 key 2
+34050 quit

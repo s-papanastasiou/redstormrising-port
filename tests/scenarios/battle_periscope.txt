@@ -1,0 +1,41 @@
+# The training battle (as battle_training up to the torpedo control),
+# then the sea conditions (F8), the periscope too deep (F4), an ordered
+# depth of 50 feet (F9, 5, 0, Return), the periscope at that depth and
+# the sea conditions again, and the tactical analysis (Help, raw $5F;
+# a second Help acknowledges it), the identification list (F7) and the
+# first type's data base page (Shift+A).
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4200 click
+4600 click
+4950 mouse -85 146
+5050 lmb 1
+5070 lmb 0
+5450 key Space
+6200 key 60 down
+6250 key 4
+6300 key 60 up
+7500 key F8
+7700 key F4
+7900 key F9
+7950 key 5
+7960 key 0
+7970 key Return
+9500 key F4
+9700 key F8
+9750 key 5f
+9850 key 5f
+9900 key F7
+9930 key 60 down
+9950 key A
+9970 key 60 up
+10100 quit

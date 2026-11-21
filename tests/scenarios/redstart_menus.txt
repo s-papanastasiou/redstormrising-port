@@ -1,0 +1,9 @@
+# RedStart's first menu: RECALL (the saved games list; none saved),
+# EXIT back to the menu, then View HONOR ROLL (empty).
+2450 mouse 0 -3
+2470 click
+2800 mouse 0 65
+2830 click
+3200 mouse 0 -41
+3230 click
+4400 quit

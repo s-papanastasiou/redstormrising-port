@@ -1,0 +1,57 @@
+# Campaign (Red module), for --det-timing runs: title -> START -> 1984 ->
+# identification -> name TEST -> Introductory -> "World War III in the
+# Atlantic" -> World News -> orders -> Holy Loch -> LEAVE PORT ->
+# strategic map, steered with the cursor keys -> mission failed report ->
+# World News -> new orders -> strategic map again -> more news.
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4150 mouse 0 143
+4200 lmb 1
+4220 lmb 0
+4600 lmb 1
+4620 lmb 0
+5000 mouse 0 25
+5050 lmb 1
+5070 lmb 0
+5300 lmb 1
+5320 lmb 0
+8600 key Up down
+9400 key Up up
+9400 key Right down
+10200 key Right up
+10200 key Up down
+11000 key Up up
+11200 lmb 1
+11220 lmb 0
+11600 lmb 1
+11620 lmb 0
+12000 lmb 1
+12020 lmb 0
+12400 lmb 1
+12420 lmb 0
+12800 lmb 1
+12820 lmb 0
+13200 lmb 1
+13220 lmb 0
+13600 lmb 1
+13620 lmb 0
+14000 lmb 1
+14020 lmb 0
+14400 lmb 1
+14420 lmb 0
+14800 lmb 1
+14820 lmb 0
+15200 lmb 1
+15220 lmb 0
+15600 lmb 1
+15620 lmb 0
+19050 quit

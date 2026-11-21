@@ -1,0 +1,18 @@
+# Original game data is copyrighted and must never be committed:
+# disk images, the WHDLoad install archive and anything extracted from them.
+original/
+*.adf
+*.lha
+*.lzx
+*.dms
+*.ipf
+extracted/
+build/
+build-win/
+dist/
+
+# Game manual (copyrighted; local reference only)
+*.pdf
+!docs/keys.pdf
+__pycache__/
+build-bounds/

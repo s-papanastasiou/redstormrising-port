@@ -1,0 +1,30 @@
+# The campaign scenario up to the strategic map (frame 8600), then the
+# Status Report (Space: weapons, tubes, systems damage; unit_list,
+# order_rows, print_name_count), for --det-timing runs.
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4150 mouse 0 143
+4200 lmb 1
+4220 lmb 0
+4600 lmb 1
+4620 lmb 0
+5000 mouse 0 25
+5050 lmb 1
+5070 lmb 0
+5300 lmb 1
+5320 lmb 0
+9000 key Space
+9800 key Space
+10600 key Space
+11400 key Space
+12200 key Space
+13000 quit

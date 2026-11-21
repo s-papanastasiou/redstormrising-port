@@ -1,0 +1,87 @@
+# Training battle vs. a November-class submarine, for --det-timing runs:
+# title -> START -> 1984 -> identification -> name TEST -> orders ->
+# Introductory -> training mission -> "Your Orders, Sir?" -> Battle
+# Stations -> load tube 1 (Shift+4) -> fire a Mk48 (4, aim with the mouse,
+# click) -> torpedo control -> tour of the displays (F1-F8, zoom, panels)
+# -> speed (-, =; the keypad +/- do nothing here) and rudder (, . .)
+# -> Shift+4 six times: with all tubes full the game asks for a tube to
+# empty; "1" Return (input_number, fire_tube) -> left panel pages V
+# (weapons_list) and B (damage_list) -> 1 and 2 (launch kinds 1, 2).
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4200 click
+4600 click
+4950 mouse -85 146
+5050 lmb 1
+5070 lmb 0
+5450 key Space
+6200 key 60 down
+6250 key 4
+6300 key 60 up
+7450 key F1
+7550 key 4
+# aim: the game put the pointer on the aim point (187,97) at "4"; to (208,95)
+7610 mouse 3 -2
+7613 mouse 3 0
+7616 mouse 3 0
+7619 mouse 3 0
+7622 mouse 3 0
+7625 mouse 3 0
+7628 mouse 3 0
+7690 lmb 1
+7720 lmb 0
+8300 key N down
+8320 key N up
+8400 key F2
+8600 key F3
+8700 key F5
+8800 key F6
+8900 key F7
+9000 key F8
+9100 key F1
+9200 key Z
+9300 key X
+9400 key C
+9500 key M
+9700 key Keypad +
+9800 key Keypad +
+9900 key -
+10000 key Keypad -
+10100 key =
+10200 key ,
+10300 key .
+10400 key .
+10500 key 60 down
+10550 key 4
+10600 key 60 up
+10650 key 60 down
+10700 key 4
+10750 key 60 up
+10800 key 60 down
+10850 key 4
+10900 key 60 up
+10950 key 60 down
+11000 key 4
+11050 key 60 up
+11100 key 60 down
+11150 key 4
+11200 key 60 up
+11250 key 60 down
+11300 key 4
+11350 key 60 up
+11450 key 1
+11500 key Return
+11700 key V
+11900 key B
+12100 key 1
+12300 key 2
+12700 quit

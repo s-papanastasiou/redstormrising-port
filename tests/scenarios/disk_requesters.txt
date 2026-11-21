@@ -1,0 +1,10 @@
+# The insert-disk requesters: the disks taken out at RedStart's menu,
+# RECALL asks for RedStormSave: (Space cancels; the menu asks again), and
+# once the disks are back RECALL goes on to its list. Checked frame by
+# frame against the original requester (68000 code) before recording.
+2440 disks out
+2450 mouse 0 -3
+2470 click
+2700 key Space
+2800 disks in
+3000 quit

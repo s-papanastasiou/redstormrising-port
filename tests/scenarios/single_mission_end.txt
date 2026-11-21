@@ -1,0 +1,75 @@
+# campaign_battle.txt, but the battle ends as a single mission (the test-
+# only "set" changes the record's situation, +146, to 30 through Storm's
+# record pointer a4+5234), for --det-timing runs: after the replay Red's
+# start ends the mission (single_mission_end $21a3e): the after action
+# report, the final outcome page ($235e8) with the efficiency rating, the
+# battle accomplishments and the final rank; then RedStart's first menu.
+2450 mouse 0 -75
+2470 click
+2670 click
+2970 click
+3150 key T
+3160 key E
+3170 key S
+3180 key T
+3190 key Return
+3400 click
+3800 click
+4150 mouse 0 143
+4200 lmb 1
+4220 lmb 0
+4600 lmb 1
+4620 lmb 0
+5000 mouse 0 25
+5050 lmb 1
+5070 lmb 0
+5300 lmb 1
+5320 lmb 0
+8650 set red a4+14908 2 190
+8650 set red a4+14910 2 72
+10300 key Up down
+10310 key Up up
+10400 key Return
+11000 key Space
+11150 key 60 down
+11200 key 4
+11250 key 60 up
+11400 key A
+14500 key 4 
+# aim: the game put the pointer on the aim point (187,97) at "4"; to (91,32)
+14560 mouse -6 -5
+14563 mouse -6 -4
+14566 mouse -6 -4
+14569 mouse -6 -4
+14572 mouse -6 -4
+14575 mouse -6 -4
+14578 mouse -6 -4
+14581 mouse -6 -4
+14584 mouse -6 -4
+14587 mouse -6 -4
+14590 mouse -6 -4
+14593 mouse -6 -4
+14596 mouse -6 -4
+14599 mouse -6 -4
+14602 mouse -6 -4
+14605 mouse -6 -4
+14650 lmb 1
+14680 lmb 0
+20000 key F4
+21000 key F5
+22000 key F6
+23000 key F8
+24000 key F3
+25000 key F1
+30000 set storm *a4+5234+146 2 30
+40500 key N  
+41500 key Y
+47000 key N
+47500 key Return
+48000 key N
+48500 key Return
+49000 key N
+49500 key Return
+50000 key N
+50500 key Return
+50600 quit

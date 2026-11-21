@@ -1,0 +1,17 @@
+# Two-pass test preset for the shader-chain presenter (rsr --shader-preset).
+# Pass 0 copies the frame into an sRGB framebuffer (exercises FBOs, aliases
+# and sRGB conversion); pass 1 draws simple scanlines at the window size.
+shaders = "2"
+
+shader0 = "copy.glsl"
+alias0 = "STAGE"
+filter_linear0 = "false"
+scale_type0 = "source"
+scale0 = "1.0"
+srgb_framebuffer0 = "true"
+
+shader1 = "scanlines.glsl"
+filter_linear1 = "false"
+
+parameters = "SCANLINE_DARK"
+SCANLINE_DARK = "0.45"
