@@ -184,6 +184,7 @@ bool run(Settings& s) {
     SDL_RenderClear(ren);
     centred(ren, 22, "RED STORM RISING", kTitle, 2);
     centred(ren, 46, "MicroProse, 1990 - the Amiga game", kDim);
+    text(ren, kW - 4 - float(std::strlen("v" RSR_VERSION)) * kChar, 4, "v" RSR_VERSION, kDim);
     // The options.
     auto option = [&](int r, const SDL_FRect& f, float y, const char* label, const std::string& value) {
       if (row == r) {

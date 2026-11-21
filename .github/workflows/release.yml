@@ -1,0 +1,55 @@
+# SPDX-FileCopyrightText: 2026 Stelios Papanastasiou
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# A release: pushing a tag v<VERSION> (the version in CMakeLists.txt, e.g.
+# v0.5.0; v0.5.0-rc1 and the like become pre-releases) builds both
+# packages and makes a DRAFT release with them. Check the draft on GitHub
+# and publish it there.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  version:
+    name: Tag matches the version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Compare
+        run: |
+          version=$(sed -n 's/^project(redstormrising-port VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
+          tag="${GITHUB_REF_NAME#v}"
+          if [ "${tag%%-*}" != "$version" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match the version in CMakeLists.txt ($version)"
+            exit 1
+          fi
+
+  build:
+    needs: version
+    uses: ./.github/workflows/build.yml
+
+  release:
+    name: Draft release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+      - name: Create the draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="$GITHUB_REF_NAME"
+          mv artifacts/linux/RedStormRising-linux-x86_64.tar.gz "RedStormRising-${tag}-linux-x86_64.tar.gz"
+          mv artifacts/windows/RedStormRising-windows.zip "RedStormRising-${tag}-windows.zip"
+          prerelease=""
+          case "$tag" in *-*) prerelease="--prerelease" ;; esac
+          gh release create "$tag" --draft $prerelease --verify-tag \
+            --title "Red Storm Rising port $tag" --notes-file .github/release-notes.md \
+            "RedStormRising-${tag}-linux-x86_64.tar.gz" "RedStormRising-${tag}-windows.zip"

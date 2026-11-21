@@ -91,6 +91,34 @@ WINEPATH='Z:\usr\x86_64-w64-mingw32\sys-root\mingw\bin' wine build-win/rsr.exe -
   --no-present --det-timing --av-hash 60 --reference-terrain --script tests/scenarios/NAME.txt DATA_DIR
 ```
 
+## Linux package and releases
+
+`tools/package-linux.sh` builds `dist/RedStormRising-linux-x86_64.tar.gz`:
+`rsr` (the C++ runtime linked in, `-DRSR_PORTABLE=ON`), its own
+`lib/libSDL3.so.0` (found through the program's run path `$ORIGIN/lib`),
+the shaders, `keys.pdf`, `source.zip` and a `README.txt` for players
+(`packaging/linux/`). It runs on distributions as old as the one it was
+built on.
+
+GitHub builds both packages (`.github/workflows`):
+
+- **`build.yml`**, on every push and pull request. The Linux package is
+  built on Ubuntu 22.04 (glibc 2.35) with SDL3 built from source; the
+  Windows one is cross-compiled on Fedora with `tools/package-windows.sh`.
+  It also runs the checks that need no game files: the code rules and the
+  shader preset test. The gate itself needs the game's files, which are
+  never uploaded, so it runs locally before pushing.
+- **`release.yml`**, on a tag `v<version>`, where the version is the one in
+  `CMakeLists.txt` (`project(... VERSION 0.5.0)`); a tag that does not
+  match is refused. It builds both packages and makes a **draft** release
+  with them, named `RedStormRising-v<version>-windows.zip` and
+  `-linux-x86_64.tar.gz`, with `.github/release-notes.md` as its text.
+  Tags with a suffix (`v0.5.0-rc1`) become pre-releases.
+
+To release: set the version in `CMakeLists.txt`, merge into `main`, then
+`git tag v0.5.0 && git push origin v0.5.0`. Check the draft on GitHub's
+Releases page and publish it there.
+
 ## Source tree
 
 ```
@@ -104,7 +132,7 @@ src/
   runtime/       the running program's context (which module, where it is loaded)
   host/          the game's files on the host (data and save directories)
   present/       optional CRT shaders (presentation only)
-packaging/       the Windows package's launcher and readme (tools/package-windows.sh builds it)
+packaging/       the packages' readmes and run.bat (tools/package-windows.sh, package-linux.sh)
 tests/           the gate, the scenarios and their recordings
 tools/analysis/  analysis tools (most from the translation; check_code_rules.py is in the gate)
 ```

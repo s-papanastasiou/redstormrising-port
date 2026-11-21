@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 cmake_minimum_required(VERSION 3.16)
-project(redstormrising-port LANGUAGES CXX)
+# The version: releases are tagged v<VERSION> (.github/workflows/release.yml).
+project(redstormrising-port VERSION 0.5.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -47,11 +48,19 @@ target_link_libraries(rsr PRIVATE game amiga SDL3::SDL3)
 target_compile_definitions(rsr PRIVATE
   RSR_DATADIR="${CMAKE_INSTALL_FULL_DATADIR}/redstormrising"
   RSR_SOURCE_SHADER_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data/shaders"
-  RSR_SOURCE_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/extracted/RedStormRising/data")
+  RSR_SOURCE_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/extracted/RedStormRising/data"
+  RSR_VERSION="${PROJECT_VERSION}")
 if(WIN32)
   # Windows: the C++ runtime linked in, so the program needs only SDL3.dll
   # next to it (tools/package-windows.sh).
   target_link_options(rsr PRIVATE -static-libgcc -static-libstdc++ -static)
+endif()
+# The Linux package (tools/package-linux.sh): the C++ runtime linked in,
+# and SDL3 looked for in lib/ next to the program first.
+option(RSR_PORTABLE "Linux: a self-contained program for the release package" OFF)
+if(RSR_PORTABLE AND NOT WIN32)
+  target_link_options(rsr PRIVATE -static-libgcc -static-libstdc++)
+  set_target_properties(rsr PROPERTIES BUILD_RPATH "$ORIGIN/lib" INSTALL_RPATH "$ORIGIN/lib")
 endif()
 install(TARGETS rsr RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(DIRECTORY data/shaders DESTINATION ${CMAKE_INSTALL_DATADIR}/redstormrising)

@@ -64,6 +64,14 @@ Windows: `tools/package-windows.sh` cross-compiles with MinGW and builds
 `dist/RedStormRising-windows.zip`; players put the `.lha` or the disks next
 to `rsr.exe`. See [`docs/README.md`](docs/README.md).
 
+## Downloads
+
+Ready-made packages for Windows and Linux (x86-64) are on the
+[Releases](https://github.com/s-papanastasiou/redstormrising-port/releases)
+page. Unpack one, put your `.lha` or the two `.adf` files next to the
+program, and start it. Each package holds the program only, with its
+source code and licence; the game's files come from your copy.
+
 ## Documentation
 
 [`docs/`](docs/README.md) has the documentation:
