@@ -17,6 +17,35 @@ The game's files are not included: you need your own copy of the game,
 either the WHDLoad install (`RedStormRising_v1.0_1603.lha`) or the two
 disks of version v843.02 (`.adf`).
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/title.png" alt="The title screen" width="100%"></td>
+    <td><img src="docs/screenshots/strategic-map.png" alt="The strategic map of the North Atlantic" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center">The title screen</td>
+    <td align="center">The strategic map</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/world-news.png" alt="World News: the war's progress" width="100%"></td>
+    <td><img src="docs/screenshots/control-room.png" alt="The control room: Your Orders, Sir?" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center">World News: how the war goes</td>
+    <td align="center">The control room: a sonar contact</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/torpedo-launch.png" alt="A Mk 48 torpedo leaving the submarine" width="100%"></td>
+    <td><img src="docs/screenshots/tactical-display.png" alt="The tactical display in a battle" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center">A Mk 48 torpedo on its way</td>
+    <td align="center">The tactical display in a battle</td>
+  </tr>
+</table>
+
 ## Building and playing
 
 Linux (needs CMake, Ninja, a C++20 compiler and SDL3):
@@ -33,6 +62,9 @@ build/rsr path/to/RedStormRising_v1.0_1603.lha   # or: build/rsr disk1.adf disk2
 - **The launch screen** comes first: the CRT look, fullscreen or a window,
   then Start or Quit. Any command-line option skips it; `build/rsr --help`
   lists them.
+
+  <img src="docs/screenshots/launch-screen.png" alt="The launch screen" width="400">
+
 - **Keys:** [`docs/keys.pdf`](docs/keys.pdf) is a one-page cheat sheet.
   The game is played with keyboard and mouse.
 
