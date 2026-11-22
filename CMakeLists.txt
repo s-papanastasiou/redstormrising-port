@@ -4,7 +4,7 @@
 #
 cmake_minimum_required(VERSION 3.16)
 # The version: releases are tagged v<VERSION> (.github/workflows/release.yml).
-project(redstormrising-port VERSION 0.5.0 LANGUAGES CXX)
+project(redstormrising-port VERSION 0.7.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
