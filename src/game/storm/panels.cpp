@@ -8,6 +8,7 @@
 #include "game/common/strings.hpp"
 #include "game/input/calls.hpp"
 #include "game/input/vars.hpp"
+#include "game/mem/call.hpp"
 #include "game/mem/register.hpp"
 #include "game/screen/calls.hpp"
 
@@ -464,9 +465,12 @@ ORIGINAL_IN("storm", 0x22cc8, shade_column);
 // $2bfd8: the tactical display's grid, 512 >> scale pixels apart from the
 // centre. Displays other than 3 and 5 take the pen from a local the
 // original never sets; it is 6 in every scenario (the battle log's map).
+// With the alternative colours display 3 (weapon control) has a darker
+// grid than the original's cyan.
 void draw_grid() {
   constexpr int16_t kCentreX = 188;
-  const int16_t pen = battle.display_mode == 3 ? kGridPen3 : battle.display_mode == 5 ? kGridPen5 : kGridPenOther;
+  const int16_t grid3 = mem::alternative_color() ? kGridPen3Alternative : kGridPen3;
+  const int16_t pen = battle.display_mode == 3 ? grid3 : battle.display_mode == 5 ? kGridPen5 : kGridPenOther;
   const int16_t step = int16_t(512 >> battle.scale);
   for (int16_t d = 0; kCentreX + d < kMapRight; d = int16_t(d + step)) {
     screen::line_colour(int16_t(kCentreX + d), kMapTop, int16_t(kCentreX + d), kMapBottom, pen);

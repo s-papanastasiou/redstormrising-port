@@ -57,11 +57,13 @@ build/rsr path/to/RedStormRising_v1.0_1603.lha   # or: build/rsr disk1.adf disk2
   - **Input:** Responsive (the default: every click and key press counts)
     or Original (as in 1990, when a quick click or quickly typed digits
     could be lost).
+  - **Color:** Original (the default) or Alternative, a dark blue grid on
+    the weapon control display (F2) instead of the bright cyan.
 
   Then Start or Quit. Any command-line option skips it; `build/rsr --help`
   lists them.
 
-  <img src="docs/screenshots/launch-screen.png" alt="The launch screen: CRT look, Display and Input, then Start or Quit" width="400">
+  <img src="docs/screenshots/launch-screen.png" alt="The launch screen: CRT look, Display, Input and Color, then Start or Quit" width="400">
 
 - **Keys:** [`docs/keys.pdf`](docs/keys.pdf) is a one-page cheat sheet.
   The game is played with keyboard and mouse.

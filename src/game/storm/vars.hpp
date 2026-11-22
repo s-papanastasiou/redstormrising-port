@@ -310,6 +310,9 @@ inline constexpr Const<char> text_threats{-27088}, text_weapons{-25948}, text_re
     text_deg{-24706}, text_knts{-24702}, text_ft{-24696};
 inline constexpr int16_t kWeaponTypes = 8, kReloadLines = 5;
 inline constexpr int16_t kGridPen3 = kPenCyan, kGridPen5 = kPenDarkRed, kGridPenOther = kPenPlum;
+// Not the original's: display 3's grid with the alternative colours
+// (mem::alternative_color()), deep sea instead of the bright cyan.
+inline constexpr int16_t kGridPen3Alternative = kPenDeepSea;
 inline constexpr Const<char> text_tube{-25940}, text_pad{-31260}, text_tasm{-25934};
 inline constexpr Const<char> text_cavitating{-24692}, text_quiet{-24690};
 inline constexpr int16_t kTubeNameLength = 8;

@@ -34,6 +34,8 @@ Run ./rsr (or double-click it in a file manager). The launch screen offers:
   Input      Responsive (every click and key press counts) or Original
              (as in 1990: a quick click, or digits typed quickly in a
              battle, can be lost)
+  Color      Original or Alternative (a dark blue grid on the weapon
+             control display, F2, instead of the bright cyan)
   START / QUIT
 Your choices are remembered for the next start.
 
