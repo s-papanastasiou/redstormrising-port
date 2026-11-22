@@ -32,8 +32,9 @@ Double-click run.bat (or rsr.exe). The launch screen offers:
              battle, can be lost)
   Color      Original or Alternative (a dark blue grid on the weapon
              control display, F2, instead of the bright cyan)
-  Map        Original or Detailed (the naval ports the briefings name,
-             such as Murmansk and Arkhangel'sk, marked on the strategic map)
+  Map        Original or Detailed (the naval ports the briefings name
+             marked on the strategic map with an anchor; Murmansk and
+             Arkhangel'sk also named)
   START / QUIT
 Your choices are remembered for the next start.
 

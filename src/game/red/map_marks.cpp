@@ -3,8 +3,9 @@
 
 // Not the original's: the detailed map (--detailed-map, the launch
 // screen's Map: Detailed). The naval ports the briefings name are marked
-// on the strategic map with a white anchor and their name in the game's
-// own font (font 1, bold, as the names painted into the map).
+// on the strategic map with a white anchor; the two Soviet ports the war
+// turns on also with their name, in the game's own font (font 1, bold, as
+// the names painted into the map).
 //
 // The marks are drawn on the finished frame, never into the game's
 // bitmaps: the game reads the map's pixels (land or sea for routes and
@@ -36,15 +37,15 @@ enum class Side { kRight, kLeft, kAbove };
 struct Mark {
   int16_t place;          // its point in the places table
   int8_t shift_x, shift_y;  // the anchor moved from that point (Bergen's falls on the map's NORWAY)
-  const char* name;       // as the briefings spell it
+  const char* name;       // as the briefings spell it; nullptr: the anchor only
   Side side;
 };
 constexpr Mark kMarks[] = {
     {52, 0, 0, "MURMANSK", Side::kRight},
     {61, 0, 0, "ARKHANGEL'SK", Side::kAbove},
-    {39, 0, 0, "NARVIK", Side::kLeft},
-    {35, 0, 0, "TRONDHEIM", Side::kLeft},
-    {28, -2, -2, "BERGEN", Side::kLeft},
+    {39, 0, 0, nullptr, Side::kLeft},     // Narvik
+    {35, 0, 0, nullptr, Side::kLeft},     // Trondheim
+    {28, -2, -2, nullptr, Side::kLeft},   // Bergen
 };
 
 // The anchor, 5 x 6, its shank on the point (x - 2 .. x + 2, y - 3 .. y + 2).
@@ -98,6 +99,7 @@ const std::vector<Piece>& mark_pieces(uint32_t font) {
       for (int col = 0; col < 5; ++col)
         if (kAnchor[row][col] == '#') anchor.pixels.push_back({int16_t(x - 2 + col), int16_t(y - 3 + row)});
     pieces.push_back(std::move(anchor));
+    if (!m.name) continue;
     const int w = text_width(f, m.name);
     switch (m.side) {
       case Side::kRight: text_pieces(f, x + 6, y - 2, m.name, pieces); break;
