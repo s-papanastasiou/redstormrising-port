@@ -59,10 +59,10 @@ build/rsr path/to/RedStormRising_v1.0_1603.lha   # or: build/rsr disk1.adf disk2
     could be lost).
   - **Color:** Original (the default) or Alternative, a dark blue grid on
     the weapon control display (F2) instead of the bright cyan.
-  - **Map:** Original (the default) or Detailed: the naval ports the
-    briefings name marked on the strategic map with an anchor, in the
-    game's own pixel style; the Soviet ports Murmansk and Arkhangel'sk also
-    named.
+  - **Map:** Original (the default) or Detailed: the ports the briefings
+    send you to (Murmansk, Arkhangel'sk, Narvik, Trondheim, Bergen,
+    Thorshavn) marked with an anchor and named on the strategic map, and
+    Spitsbergen named, in the game's own pixel style.
 
   Then Start or Quit. Any command-line option skips it; `build/rsr --help`
   lists them.

@@ -433,6 +433,7 @@ inline Position position(const ui::Point& p) { return {p.x, p.y}; }
 // Not the original's: the detailed map's marks (map_marks.cpp), white
 // as the map's ice, on the frame as it is shown (0xRRGGBB).
 inline constexpr uint32_t kMarkColour = 0xffffff;
+inline constexpr uint32_t kIslandNameColour = 0;  // black, as the map's painted names
 inline constexpr int16_t kMarkFont = 1;  // the game's font 1 (RedStorm1.fnt), drawn bold as the map's own names
 
 // The player's record (common/record.hpp), as Red reads it.

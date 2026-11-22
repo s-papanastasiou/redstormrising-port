@@ -121,12 +121,12 @@ rendered (`Machine::end_of_frame`), never into the game's bitmaps:
 
 - **The game's frame overlay** (`GameHooks::frame_overlay`, set through
   `os::set_frame_overlay`): the detailed map's port marks
-  (`src/game/red/map_marks.cpp`, `--detailed-map`: anchors at the
-  briefings' naval ports, Murmansk and Arkhangel'sk also named). A piece of a mark (the
-  anchor, a letter) is drawn only where the shown bitmap has the clean
-  map's pens (bitmap 2) under all its pixels, so units stay on top. The
-  game reads its map's pixels for play (land and sea, the fronts), which is
-  why the marks never go into the map itself.
+  (`src/game/red/map_marks.cpp`, `--detailed-map`: anchors and names at
+  the briefings' ports, Spitsbergen's name). A mark pixel is drawn only
+  where the shown bitmap has the clean map's pen (bitmap 2) at that point,
+  so units are drawn over the marks, as if the marks were part of the
+  map's picture. The game reads its map's pixels for play (land and sea,
+  the fronts), which is why the marks never go into the map itself.
 - **The mouse pointer** (`Hle::draw_pointer`), on top of everything.
 
 ### PAL and NTSC
