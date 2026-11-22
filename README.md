@@ -52,6 +52,7 @@ build/rsr path/to/RedStormRising_v1.0_1603.lha   # or: build/rsr disk1.adf disk2
   checked, and kept in `~/.local/share/redstormrising/data` (on Windows
   `%APPDATA%\RedStormRising\data`). After that `build/rsr` alone is enough.
 - **The launch screen** comes first: the CRT look, fullscreen or a window,
+  responsive input or the original's,
   then Start or Quit. Any command-line option skips it; `build/rsr --help`
   lists them.
 

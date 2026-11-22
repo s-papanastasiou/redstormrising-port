@@ -562,6 +562,8 @@ void usage() {
           "  --wav FILE       record the audio output\n"
           "  --verbose        log OS calls\n"
           "  --protection     keep the manual-protection question\n"
+          "  --original-input read input as the original did: quick clicks and quickly\n"
+          "                   typed keys can be lost (docs/known-issues.md)\n"
           "  --pal            a European (PAL, 50 Hz) Amiga (the default)\n"
           "  --ntsc           an American (NTSC, 60 Hz) Amiga: pictures run 20%% faster\n"
           "  --det-timing     deterministic timing (for comparing runs)\n"
@@ -610,6 +612,7 @@ int main(int argc, char** argv) {
     else if (a == "--verbose") machine.verbose = true;
     else if (a == "--protection") machine.bypass_protection = false;
     else if (a == "--reference-terrain") machine.reference_terrain = true;
+    else if (a == "--original-input") machine.original_input = true;
     else if (a == "--pal") machine.pal = true;
     else if (a == "--ntsc") machine.pal = false;
     else if (a == "--det-timing") det_timing = true;
@@ -706,6 +709,7 @@ int main(int argc, char** argv) {
     launcher::save(ls, settings);
     crt = ls.crt;
     host.fullscreen = ls.fullscreen;
+    machine.original_input = ls.original_input;
   }
   if (!crt.empty()) {
     if (!host.shader_preset.empty()) {

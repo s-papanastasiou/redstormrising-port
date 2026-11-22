@@ -34,7 +34,8 @@ build/rsr --help                 # the options
 **The launch screen.** Started without options (`build/rsr`, a
 double-click, `run.bat`), the program first shows a launch screen
 (`src/launcher.cpp`): the CRT look (Off, Lottes fast, Guest fast, Guest,
-Royale), fullscreen or a window, Start or Quit.
+Royale), fullscreen or a window, the input (responsive, the default, or
+as the original: `--original-input`, see known-issues.md), Start or Quit.
 
 - It works with the mouse or the keys, and remembers the choices in
   `launcher.cfg` in the user's folder.

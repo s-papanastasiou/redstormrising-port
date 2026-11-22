@@ -247,6 +247,11 @@ public:
   // terrain) as if Storm were loaded where the reference recordings had it,
   // wherever it is loaded now.
   bool reference_terrain = false;
+  // Input as the original saw it (--original-input): every waiting input
+  // message read at once, so a click whose press and release wait
+  // together, or all but the last of several keys typed quickly, are lost
+  // (docs/known-issues.md). Off: one press per read (Hle::next_input).
+  bool original_input = false;
   static constexpr uint32_t kReferenceStormBlock = 0x09e4f8;
   // Module `name`'s file as LoadSeg would load it at `block`.
   const std::vector<uint8_t>& image_as_loaded_at(const std::string& name, uint32_t block);
