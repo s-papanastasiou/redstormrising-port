@@ -36,9 +36,9 @@ Run ./rsr (or double-click it in a file manager). The launch screen offers:
              battle, can be lost)
   Color      Original or Alternative (a dark blue grid on the weapon
              control display, F2, instead of the bright cyan)
-  Map        Original or Detailed (the naval ports the briefings name
-             marked on the strategic map with an anchor; Murmansk and
-             Arkhangel'sk also named)
+  Map        Original or Detailed (the ports the briefings send you to,
+             such as Murmansk and Arkhangel'sk, marked and named on the
+             strategic map, and Spitsbergen named)
   START / QUIT
 Your choices are remembered for the next start.
 
