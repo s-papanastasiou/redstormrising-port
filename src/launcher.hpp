@@ -3,8 +3,8 @@
 
 // The launch screen (shown when the program starts without options): the
 // CRT look, fullscreen or a window, the input (responsive or as the
-// original), the colours (original or alternative), then start the game
-// or quit. Drawn
+// original), the colours (original or alternative), the map (original or
+// detailed), then start the game or quit. Drawn
 // with SDL only (its renderer and built-in 8x8 font).
 #pragma once
 
@@ -17,6 +17,7 @@ struct Settings {
   bool fullscreen = true;
   bool original_input = false;  // input read as the original (--original-input); default: responsive
   bool alternative_color = false;  // the F2 grid darker (--alternative-color); default: the original's
+  bool detailed_map = false;       // the naval ports marked on the map (--detailed-map); default: the original's
   std::string error;        // shown instead of Start (no game files ...)
 };
 

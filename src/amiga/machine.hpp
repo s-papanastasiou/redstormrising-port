@@ -70,6 +70,9 @@ struct GameHooks {
   // A program file was loaded at [block, block + size) (relocated and
   // patched; `name`: its file name, lower case), or unloaded.
   void (*image_loaded)(const char* name, uint32_t block, uint32_t size) = nullptr;
+  // The frame (FB_W x FB_H, 0xRRGGBB) was rendered: the game may draw on
+  // it before the pointer goes on top (the detailed map's marks).
+  void (*frame_overlay)(uint32_t* frame) = nullptr;
   void (*image_unloaded)(uint32_t block, uint32_t size) = nullptr;
   // The `size` bytes at `addr` (a BitMap, a RastPort) are now a host
   // object, or no longer.
@@ -256,6 +259,10 @@ public:
   // weapon control display's grid in deep sea instead of the original's
   // bright cyan (game::mem::alternative_color()). Off: as the original.
   bool alternative_color = false;
+  // --detailed-map (the launch screen's Map: Detailed): the naval ports
+  // marked on the strategic map (src/game/red/map_marks.cpp), drawn on the
+  // frame only, so the game's own map is untouched. Off: as the original.
+  bool detailed_map = false;
   static constexpr uint32_t kReferenceStormBlock = 0x09e4f8;
   // Module `name`'s file as LoadSeg would load it at `block`.
   const std::vector<uint8_t>& image_as_loaded_at(const std::string& name, uint32_t block);

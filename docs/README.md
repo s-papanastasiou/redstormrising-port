@@ -37,7 +37,9 @@ double-click, `run.bat`), the program first shows a launch screen
 Royale), fullscreen or a window, the input (responsive, the default, or
 as the original: `--original-input`, see known-issues.md), the colours
 (original, the default, or alternative: `--alternative-color`, a dark blue
-grid on the weapon control display), Start or Quit.
+grid on the weapon control display), the map (original, the default, or
+detailed: `--detailed-map`, the naval ports marked on the strategic map by
+`src/game/red/map_marks.cpp`), Start or Quit.
 
 - It works with the mouse or the keys, and remembers the choices in
   `launcher.cfg` in the user's folder.

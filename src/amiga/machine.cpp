@@ -368,6 +368,7 @@ void Machine::idle_until(const std::function<bool()>& done) {
 void Machine::end_of_frame() {
   mouse_frame();
   render_frame();
+  if (game_hooks.frame_overlay) game_hooks.frame_overlay(fb_.data());
   hle_->draw_pointer(fb_.data());
   ++frame_count_;
   if (ram_hash_every > 0 && frame_count_ % uint64_t(ram_hash_every) == 0) {

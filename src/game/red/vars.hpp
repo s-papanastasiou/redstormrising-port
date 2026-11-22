@@ -430,6 +430,11 @@ inline ui::Point& map_cursor() { return ui::state().menu_cursor; }      // where
 inline ui::Point ui_point(const Position& p) { return {p.x, p.y}; }
 inline Position position(const ui::Point& p) { return {p.x, p.y}; }
 
+// Not the original's: the detailed map's marks (map_marks.cpp), white
+// as the map's ice, on the frame as it is shown (0xRRGGBB).
+inline constexpr uint32_t kMarkColour = 0xffffff;
+inline constexpr int16_t kMarkFont = 1;  // the game's font 1 (RedStorm1.fnt), drawn bold as the map's own names
+
 // The player's record (common/record.hpp), as Red reads it.
 inline PlayerRecord* career() { return common::player_record_as<PlayerRecord>(); }
 

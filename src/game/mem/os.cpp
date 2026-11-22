@@ -137,6 +137,9 @@ void set_rgb4(uint32_t vp, int32_t n, int32_t r, int32_t g, int32_t b) {
 }
 void rect_fill(uint32_t rp, int32_t x0, int32_t y0, int32_t x1, int32_t y1) { gfx().rect_fill(rp, x0, y0, x1, y1); }
 int32_t read_pixel(uint32_t rp, int32_t x, int32_t y) { return gfx().read_pixel(rp, int16_t(x), int16_t(y)); }
+int32_t bitmap_pixel(const amiga::BitMap& bitmap, int32_t x, int32_t y) { return gfx().bitmap_pixel(bitmap, x, y); }
+const amiga::Drawing::Font& text_font(uint32_t font) { return gfx().font(font); }
+void set_frame_overlay(void (*overlay)(uint32_t* frame)) { amiga::game_hooks.frame_overlay = overlay; }
 void set_apen(uint32_t rp, int32_t pen) { gfx().set_apen(rp, pen); }
 void set_bpen(uint32_t rp, int32_t pen) { gfx().set_bpen(rp, pen); }
 void set_drmd(uint32_t rp, int32_t mode) { gfx().set_drmd(rp, mode); }

@@ -57,4 +57,8 @@ inline bool protection_bypassed() { return runtime::g_machine->bypass_protection
 // original's): where the port offers a calmer colour than the original.
 inline bool alternative_color() { return runtime::g_machine->alternative_color; }
 
+// The detailed map (--detailed-map; the default is the original's): the
+// naval ports marked on the strategic map (red/map_marks.cpp).
+inline bool detailed_map() { return runtime::g_machine->detailed_map; }
+
 }  // namespace game::mem
