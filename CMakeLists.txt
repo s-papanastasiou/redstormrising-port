@@ -35,7 +35,7 @@ add_library(game OBJECT src/runtime/runtime.cpp
   src/game/storm/text.cpp src/game/storm/battle.cpp src/game/storm/state.cpp src/game/storm/ships.cpp src/game/storm/panels.cpp src/game/storm/keys.cpp src/game/storm/pointer.cpp src/game/red/texts.cpp src/game/common/strings.cpp src/game/common/memory.cpp src/game/common/startup.cpp src/game/common/stdio.cpp src/game/common/module.cpp src/game/common/devices.cpp src/game/ui/state.cpp src/game/mem/module_state.cpp src/game/mem/constants.cpp src/game/audio/state.cpp src/game/common/state.cpp src/game/common/records.cpp src/game/common/process.cpp src/game/redstorm/state.cpp src/game/redstart/state.cpp src/game/storm/texts.cpp src/game/screen/anim_state.cpp src/game/red/texts_state.cpp src/game/screen/styles.cpp src/game/screen/bitmap.cpp src/game/redstart/saves.cpp src/game/redstart/menus.cpp src/game/screen/blitter.cpp src/game/screen/sequences.cpp src/game/screen/decoder.cpp src/game/title/title.cpp src/game/redstorm/loader.cpp src/game/redstorm/display.cpp
   src/game/screen/animation.cpp src/game/input/input.cpp src/game/input/menu.cpp
   src/game/common/math.cpp src/game/common/random.cpp src/game/red/movement.cpp src/game/red/frame.cpp src/game/red/fronts.cpp src/game/red/routes.cpp src/game/red/campaign.cpp src/game/red/clock.cpp src/game/red/groups.cpp src/game/red/turn.cpp src/game/red/text.cpp src/game/red/loadout.cpp src/game/red/pages.cpp src/game/red/menu.cpp src/game/red/record.cpp src/game/red/state.cpp
-  src/game/input/wait.cpp src/game/input/tick.cpp)
+  src/game/input/wait.cpp src/game/input/tick.cpp src/game/red/map_marks.cpp)
 target_include_directories(game PUBLIC src)
 target_compile_options(game PRIVATE -Wall -Wextra)
 

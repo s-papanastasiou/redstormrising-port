@@ -114,6 +114,20 @@ by what it does.
 The front end paces the frames to real time (50 Hz for PAL, the
 default, 60 Hz for `--ntsc`), unless it runs with `--fast`.
 
+### Additions to the picture
+
+Two things are drawn on each finished frame, after the display is
+rendered (`Machine::end_of_frame`), never into the game's bitmaps:
+
+- **The game's frame overlay** (`GameHooks::frame_overlay`, set through
+  `os::set_frame_overlay`): the detailed map's port marks
+  (`src/game/red/map_marks.cpp`, `--detailed-map`). A piece of a mark (the
+  anchor, a letter) is drawn only where the shown bitmap has the clean
+  map's pens (bitmap 2) under all its pixels, so units stay on top. The
+  game reads its map's pixels for play (land and sea, the fronts), which is
+  why the marks never go into the map itself.
+- **The mouse pointer** (`Hle::draw_pointer`), on top of everything.
+
 ### PAL and NTSC
 
 The video standard: `--pal` (the default: a European Amiga, 312 lines at 50

@@ -288,6 +288,10 @@ void Drawing::draw(uint32_t rp, int x, int y) {
 void Drawing::rect_fill(uint32_t rp, int x0, int y0, int x1, int y1) {
   rp_fill(rp, int16_t(x0), int16_t(y0), int16_t(x1), int16_t(y1));
 }
+int32_t Drawing::bitmap_pixel(const BitMap& bm, int x, int y) {
+  Bits b(m, bm);
+  return b.inside(x, y) ? b.get(x, y) : -1;
+}
 int32_t Drawing::read_pixel(uint32_t rp, int x, int y) {
   Bits b(m, m.rastport(rp).bitmap);
   return b.inside(x, y) ? b.get(x, y) : -1;

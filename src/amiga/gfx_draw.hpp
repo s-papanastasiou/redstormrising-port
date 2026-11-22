@@ -32,6 +32,7 @@ public:
   void draw(uint32_t rp, int x, int y);
   void rect_fill(uint32_t rp, int x0, int y0, int x1, int y1);
   int32_t read_pixel(uint32_t rp, int x, int y);  // -1 outside the bitmap
+  int32_t bitmap_pixel(const BitMap& bm, int x, int y);  // the pen of a pixel; -1 outside
   void set_apen(uint32_t rp, int pen);
   void set_bpen(uint32_t rp, int pen);
   void set_drmd(uint32_t rp, int mode);

@@ -8,6 +8,7 @@
 
 #include <cstdint>
 
+#include "amiga/gfx_draw.hpp"
 #include "amiga/intuition_objects.hpp"
 #include "game/mem/types.hpp"
 
@@ -77,6 +78,13 @@ void wait_tof();
 void set_rgb4(uint32_t viewport, int32_t n, int32_t r, int32_t g, int32_t b);
 void rect_fill(uint32_t rastport, int32_t x0, int32_t y0, int32_t x1, int32_t y1);
 int32_t read_pixel(uint32_t rastport, int32_t x, int32_t y);
+// Not graphics.library: a BitMap's pixel (its pen; -1 outside), a loaded
+// TextFont's glyphs (the handle os::open_font and the fonts table give),
+// and a function drawing on each finished frame (0xRRGGBB, the screen's
+// size) before the pointer: the port's additions to the picture.
+int32_t bitmap_pixel(const amiga::BitMap& bitmap, int32_t x, int32_t y);
+const amiga::Drawing::Font& text_font(uint32_t font);
+void set_frame_overlay(void (*overlay)(uint32_t* frame));
 void set_apen(uint32_t rastport, int32_t pen);
 void set_bpen(uint32_t rastport, int32_t pen);
 void set_drmd(uint32_t rastport, int32_t mode);
