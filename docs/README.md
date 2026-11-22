@@ -35,7 +35,9 @@ build/rsr --help                 # the options
 double-click, `run.bat`), the program first shows a launch screen
 (`src/launcher.cpp`): the CRT look (Off, Lottes fast, Guest fast, Guest,
 Royale), fullscreen or a window, the input (responsive, the default, or
-as the original: `--original-input`, see known-issues.md), Start or Quit.
+as the original: `--original-input`, see known-issues.md), the colours
+(original, the default, or alternative: `--alternative-color`, a dark blue
+grid on the weapon control display), Start or Quit.
 
 - It works with the mouse or the keys, and remembers the choices in
   `launcher.cfg` in the user's folder.

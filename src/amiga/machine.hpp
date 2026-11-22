@@ -252,6 +252,10 @@ public:
   // together, or all but the last of several keys typed quickly, are lost
   // (docs/known-issues.md). Off: one press per read (Hle::next_input).
   bool original_input = false;
+  // --alternative-color (the launch screen's Color: Alternative): the
+  // weapon control display's grid in deep sea instead of the original's
+  // bright cyan (game::mem::alternative_color()). Off: as the original.
+  bool alternative_color = false;
   static constexpr uint32_t kReferenceStormBlock = 0x09e4f8;
   // Module `name`'s file as LoadSeg would load it at `block`.
   const std::vector<uint8_t>& image_as_loaded_at(const std::string& name, uint32_t block);

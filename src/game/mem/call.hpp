@@ -53,4 +53,8 @@ inline uint32_t code_address(uint32_t tool_addr) { return runtime::maddr(tool_ad
 // the patched routine asks here.
 inline bool protection_bypassed() { return runtime::g_machine->bypass_protection; }
 
+// The alternative colours (--alternative-color; the default is the
+// original's): where the port offers a calmer colour than the original.
+inline bool alternative_color() { return runtime::g_machine->alternative_color; }
+
 }  // namespace game::mem

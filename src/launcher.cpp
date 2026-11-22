@@ -54,7 +54,7 @@ void centred(SDL_Renderer* r, float y, const std::string& s, Colour c, float sca
 bool inside(const SDL_FRect& f, float x, float y) { return x >= f.x && x < f.x + f.w && y >= f.y && y < f.y + f.h; }
 
 // The rows the player moves between.
-enum Row { kRowCrt, kRowDisplay, kRowInput, kRowStart, kRowQuit };
+enum Row { kRowCrt, kRowDisplay, kRowInput, kRowColor, kRowStart, kRowQuit };
 
 }  // namespace
 
@@ -70,6 +70,7 @@ Settings load(const std::string& path) {
     if (key == "crt") s.crt = value;
     else if (key == "fullscreen") s.fullscreen = value != "0";
     else if (key == "input") s.original_input = value == "original";
+    else if (key == "color") s.alternative_color = value == "alternative";
   }
   return s;
 }
@@ -77,7 +78,8 @@ Settings load(const std::string& path) {
 void save(const Settings& s, const std::string& path) {
   std::ofstream out(path);
   out << "crt=" << s.crt << "\nfullscreen=" << (s.fullscreen ? 1 : 0)
-      << "\ninput=" << (s.original_input ? "original" : "responsive") << "\n";
+      << "\ninput=" << (s.original_input ? "original" : "responsive")
+      << "\ncolor=" << (s.alternative_color ? "alternative" : "original") << "\n";
 }
 
 bool run(Settings& s) {
@@ -99,7 +101,8 @@ bool run(Settings& s) {
 
   // Where things are, for the mouse.
   const SDL_FRect start_button{70, 170, 80, 18}, quit_button{170, 170, 80, 18};
-  const SDL_FRect crt_row{10, 78, 300, 16}, display_row{10, 100, 300, 16}, input_row{10, 122, 300, 16};
+  const SDL_FRect crt_row{10, 70, 300, 16}, display_row{10, 89, 300, 16}, input_row{10, 108, 300, 16},
+      color_row{10, 127, 300, 16};
 
   bool result = false, done = false;
   auto activate = [&](int r, int step) {
@@ -107,14 +110,15 @@ bool run(Settings& s) {
       case kRowCrt: crt = (crt + step + kCrtCount) % kCrtCount; break;
       case kRowDisplay: s.fullscreen = !s.fullscreen; break;
       case kRowInput: s.original_input = !s.original_input; break;
+      case kRowColor: s.alternative_color = !s.alternative_color; break;
       case kRowStart:
         if (can_start) result = done = true;
         break;
       case kRowQuit: done = true; break;
     }
   };
-  auto rows = [&] { return can_start ? std::vector<int>{kRowCrt, kRowDisplay, kRowInput, kRowStart, kRowQuit}
-                                     : std::vector<int>{kRowCrt, kRowDisplay, kRowInput, kRowQuit}; };
+  auto rows = [&] { return can_start ? std::vector<int>{kRowCrt, kRowDisplay, kRowInput, kRowColor, kRowStart, kRowQuit}
+                                     : std::vector<int>{kRowCrt, kRowDisplay, kRowInput, kRowColor, kRowQuit}; };
   auto move = [&](int step) {
     const std::vector<int> rs = rows();
     size_t at = 0;
@@ -166,6 +170,7 @@ bool run(Settings& s) {
           if (inside(crt_row, x, y)) row = kRowCrt;
           else if (inside(display_row, x, y)) row = kRowDisplay;
           else if (inside(input_row, x, y)) row = kRowInput;
+          else if (inside(color_row, x, y)) row = kRowColor;
           else if (can_start && inside(start_button, x, y)) row = kRowStart;
           else if (inside(quit_button, x, y)) row = kRowQuit;
           break;
@@ -176,6 +181,7 @@ bool run(Settings& s) {
           if (inside(crt_row, x, y)) activate(kRowCrt, step);
           else if (inside(display_row, x, y)) activate(kRowDisplay, step);
           else if (inside(input_row, x, y)) activate(kRowInput, step);
+          else if (inside(color_row, x, y)) activate(kRowColor, step);
           else if (can_start && inside(start_button, x, y)) activate(kRowStart, 1);
           else if (inside(quit_button, x, y)) activate(kRowQuit, 1);
           break;
@@ -198,15 +204,18 @@ bool run(Settings& s) {
       text(ren, 24, y, label, kText);
       text(ren, 150, y, "< " + value + " >", kValue);
     };
-    option(kRowCrt, crt_row, 82, "CRT look", kCrts[crt].label);
-    option(kRowDisplay, display_row, 104, "Display", s.fullscreen ? "Fullscreen" : "Window");
-    option(kRowInput, input_row, 126, "Input", s.original_input ? "Original" : "Responsive");
+    option(kRowCrt, crt_row, 74, "CRT look", kCrts[crt].label);
+    option(kRowDisplay, display_row, 93, "Display", s.fullscreen ? "Fullscreen" : "Window");
+    option(kRowInput, input_row, 112, "Input", s.original_input ? "Original" : "Responsive");
+    option(kRowColor, color_row, 131, "Color", s.alternative_color ? "Alternative" : "Original");
     const char* about = row == kRowCrt       ? kCrts[crt].about
                         : row == kRowDisplay ? "F11 switches in the game too."
                         : row == kRowInput   ? (s.original_input ? "As in 1990: quick presses may be lost."
                                                                  : "Every click and key press counts.")
+                        : row == kRowColor   ? (s.alternative_color ? "A dark blue grid on the F2 display."
+                                                                    : "As in 1990: the F2 grid in cyan.")
                                              : "";
-    centred(ren, 146, about, kDim);
+    centred(ren, 150, about, kDim);
     // The buttons, or why the game cannot start.
     auto button = [&](int r, const SDL_FRect& f, const char* label) {
       colour(ren, row == r ? kHighlight : kButton);
@@ -218,7 +227,7 @@ bool run(Settings& s) {
     if (can_start) {
       button(kRowStart, start_button, "START");
     } else {
-      float y = 156;
+      float y = 160;
       for (size_t at = 0; at <= s.error.size();) {  // the message, wrapped at 38 characters
         size_t end = std::min(s.error.size(), at + 38);
         if (end < s.error.size()) {
@@ -228,7 +237,7 @@ bool run(Settings& s) {
         centred(ren, y, s.error.substr(at, end - at), kWarn);
         y += 10;
         at = end + 1;
-        if (y > 166) break;
+        if (y > 170) break;
       }
     }
     button(kRowQuit, can_start ? quit_button : SDL_FRect{120, 190, 80, 18}, "QUIT");
