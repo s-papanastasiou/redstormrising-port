@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // The launch screen (shown when the program starts without options): the
-// CRT look, fullscreen or a window, then start the game or quit. Drawn
+// CRT look, fullscreen or a window, the input (responsive or as the
+// original), then start the game or quit. Drawn
 // with SDL only (its renderer and built-in 8x8 font).
 #pragma once
 
@@ -13,6 +14,7 @@ namespace launcher {
 struct Settings {
   std::string crt;          // a bundled preset's name ("crt-lottes-fast" ...); empty: none
   bool fullscreen = true;
+  bool original_input = false;  // input read as the original (--original-input); default: responsive
   std::string error;        // shown instead of Start (no game files ...)
 };
 

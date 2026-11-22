@@ -199,6 +199,7 @@ private:
   };
   std::map<uint32_t, HostServer> host_servers_;  // by node
   std::deque<InputEvent> input_events_;  // the active window's IDCMP events, oldest first
+  bool read_ends_ = false;               // next_input: a press was delivered, the read ends
   uint32_t pointer_window_ = 0;
   int mouse_x_ = 0, mouse_y_ = 0;   // pointer, front-screen pixels
 

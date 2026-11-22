@@ -1,16 +1,24 @@
 # Known issues
 
-Behaviour a player may notice that is deliberately left as it is, with
-what causes it and how it could be changed. Recorded so later work starts
-from the analysis instead of repeating it.
+Behaviour a player may notice, with what causes it: the original's
+quirks the port fixed (with the option to keep them), and what is left
+as it is. Recorded so later work starts from the analysis instead of
+repeating it.
 
 ## Mouse clicks that do not register
 
 **Symptom.** In a battle, a click to fire a torpedo (or a missile) is
 sometimes ignored and has to be repeated once or twice.
 
-**Status.** The original game's behaviour, reproduced exactly; left as
-is (2026-11-21). A 1990 Amiga loses the same clicks.
+**Status.** Fixed on 2026-11-22: input is read one press per read (see
+"The fix" below). The original's behaviour, which a 1990 Amiga had too,
+is kept as an option: `--original-input`, or Input: Original on the
+launch screen.
+
+The same cause lost **digits typed quickly in a battle** (a depth after
+F9, a course after F10): of the keys typed between two of the battle's
+reads only the last counted (getkey keeps the last key pressed). Typing
+"5 0 Return" quickly could order 10 feet instead of 50.
 
 ### Cause
 
@@ -67,39 +75,28 @@ PAL), the game gets them together and they cancel.
 **Deliberate:** the menus start with `flush_keys`, which forgets a
 click made just before the menu appeared, as the original did.
 
-### Workarounds for players
+### Workarounds (only with the original input)
 
 - Hold the button until the torpedo launches.
 - Space or Return also fire, but they too only count while held.
 - Accelerated time (Alt+T) checks much more often (every 4 frames).
 - With a touchpad, click physically instead of tapping.
 
-### Possible fix
+### The fix
 
-Change how the machine delivers mouse messages (`src/amiga/intuition.cpp`,
-`Hle::mouse_button` and `Hle::next_input`), not the game logic:
+In the machine's input delivery, not in the game logic
+(`Hle::next_input`, `src/amiga/intuition.cpp`): after a press (a mouse
+button or a key going down) is delivered, the queue reports itself empty
+once. getkey's loop then ends with the press seen; the game acts on it,
+and the next read delivers what followed (the release, the next key).
+Nothing is dropped; presses arrive one per read.
 
-- When a button-up arrives while its button-down is still unread, hold
-  the up back.
-- `next_input` delivers the down, then reports the queue empty once, so
-  that `getkey`'s loop ends with `select_button` set.
-- The next `getkey` delivers the up.
-
-The game then sees every click as a press, in the battle and on
-touchpads alike.
-
-Points to settle first:
-
-- **Behaviour.** It departs from the original for mouse input, so it
-  may be better as an option (for example `--hold-clicks`) than as the
-  default.
-- **Tests.** The scenarios use scripted clicks (`click` holds the button
-  for 4 frames; `lmb 1` / `lmb 0` are explicit). The gate must show
-  whether any recording changes. If one does, the option keeps the
-  recordings as they are.
-- **Keys.** Keys have the same issue: `controls()` reads the key matrix
-  as it is at that moment. If wanted, the same hold-back could apply to
-  key-up events.
+- **Tests.** Of the 13 scenarios one changed: `battle_periscope` types
+  "5 0 Return" within one of the battle's waits; it now orders 50 feet,
+  as its script says (the original's reading ordered 10). Its recording
+  was made again. The scripted clicks were all long enough already.
+- **Option.** `--original-input` (and the launch screen's Input:
+  Original) restores the original reading (`Machine::original_input`).
 
 ## Accelerated time (fixed 2026-11-21)
 

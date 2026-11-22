@@ -211,10 +211,24 @@ void Hle::send_idcmp(uint32_t cls, uint16_t code) {
   input_events_.push_back({cls, code, qualifier_});
 }
 
+// One press per read: after a mouse button or a key goes down, the queue
+// reports itself empty once, so that the game's read (getkey: every
+// message waiting, at once) ends with the press seen. The messages after
+// it (its release, the next key) come with the next read. Without this a
+// click whose press and release wait together cancels out, and of several
+// keys typed between two reads only the last counts (the battle reads in
+// bursts: docs/known-issues.md). --original-input: as the original.
 bool Hle::next_input(InputEvent& event) {
+  if (read_ends_) {
+    read_ends_ = false;
+    return false;
+  }
   if (input_events_.empty()) return false;
   event = input_events_.front();
   input_events_.pop_front();
+  const bool press = (event.cls == IDCMP_MOUSEBUTTONS && !(event.code & UPCODE)) ||
+                     (event.cls == IDCMP_RAWKEY && !(event.code & UPCODE));
+  if (press && !m.original_input && !input_events_.empty()) read_ends_ = true;
   return true;
 }
 

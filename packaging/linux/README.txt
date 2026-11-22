@@ -31,6 +31,9 @@ Run ./rsr (or double-click it in a file manager). The launch screen offers:
   CRT look   Off, or a CRT monitor look (Lottes fast, Guest fast, Guest,
              Royale; the last needs a fast graphics card)
   Display    Fullscreen or a window
+  Input      Responsive (every click and key press counts) or Original
+             (as in 1990: a quick click, or digits typed quickly in a
+             battle, can be lost)
   START / QUIT
 Your choices are remembered for the next start.
 
